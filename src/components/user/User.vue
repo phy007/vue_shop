@@ -370,7 +370,7 @@ export default {
         }
         this.$message.success('添加用户成功！')
         //  隐藏添加用户的对话框
-        this, (this.addDialogVisible = false)
+        this.addDialogVisible = false
         // 重新获取用户列表数据
         this.getUserList()
       })
@@ -446,11 +446,12 @@ export default {
     async saveRoleInfo() {
       if (!this.selectedRoleId)
         return this.$message.error('请选择要分配的角色！')
-      const {
-        data: res
-      } = await this.$http.put(`users/${this.userInfo.id}/role`, {
-        rid: this.selectedRoleId
-      })
+      const { data: res } = await this.$http.put(
+        `users/${this.userInfo.id}/role`,
+        {
+          rid: this.selectedRoleId
+        }
+      )
 
       if (res.meta.status !== 200) return this.$message.error('更新角色失败！')
       this.$message.success('更新角色成功！')
@@ -458,7 +459,7 @@ export default {
       this.setRoleDialogVisible = false
     },
     // 监听分配角色对话框关闭事件
-    setRoleDialogColsed(){
+    setRoleDialogColsed() {
       this.selectedRoleId = ''
       this.userInfo = {}
     }
